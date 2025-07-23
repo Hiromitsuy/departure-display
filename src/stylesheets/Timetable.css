@@ -1,0 +1,67 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap'); */
+
+#timetable-header {
+    display: flex;
+    align-items:flex-end;
+    height: 120px;
+    width: 100%;
+    font-size: 12px;
+}
+
+#timetable-header p {
+    margin: 0;
+}
+
+#timetable-header > #line-name {
+    flex: 1;
+    text-align: end;
+    font-size: 6em;
+}
+
+#timetable-header > #line-color {
+    margin: 20px 30px 0px 30px;
+    width: 60px;
+    height: 100%;
+    background-color: #80C342;
+}
+
+#timetable-header > #line-direction {
+    flex: 2;
+    font-size: 5em;
+}
+
+#timetable-body {
+    height: max-content;
+    margin: 10px 20px 20px 20px;
+    background-color: #000;
+    padding-bottom: 20px;
+}
+
+.timetable-item {
+    display: flex;
+    height: 120px;
+    flex-direction: row;
+    font-size: 80px;
+    padding-top: 20px;
+}
+
+.timetable-item > .type {
+    flex: 2;
+    text-align: center;
+    background-color: #2387c2;
+    color: white;
+    margin: 0 20px;
+}
+.timetable-item > .time {
+    flex: 1;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+.timetable-item > .destination {
+    flex: 4;
+    text-align: center;
+}
