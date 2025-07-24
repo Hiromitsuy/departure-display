@@ -1,10 +1,10 @@
-import React from "react";
 import "../stylesheets/App.css";
 
 export interface InfomationProps {
   station: string;
   currentTime: Date;
 }
+
 export default function Infomation(props: InfomationProps) {
   return (<div id="footer-info">
     <div id="display-info"><p>{props.station}</p></div>

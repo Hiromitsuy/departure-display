@@ -48,8 +48,6 @@
 .timetable-item > .type {
     flex: 2;
     text-align: center;
-    background-color: #2387c2;
-    color: white;
     margin: 0 20px;
 }
 .timetable-item > .time {

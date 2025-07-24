@@ -1,13 +1,20 @@
 import "../stylesheets/Timetable.css";
 
-export default function TimetableHeader() {
+export interface HeaderProps {
+  lineName: string,
+  lineColor?: string,
+  corporateColor: string,
+  directionTitle: string,
+}
+
+export default function TimetableHeader(props: HeaderProps) {
   return (<div id="timetable-header">
     <div id="line-name">
-      <p>東海道本線</p>
+      <p>{props.lineName}</p>
     </div>
-    <div id="line-color"></div>
+    <div id="line-color" style={{backgroundColor: props.lineColor || props.corporateColor}}></div>
     <div id="line-direction">
-      <p>下り 岐阜・一宮方面</p>
+      <p>{props.directionTitle}</p>
     </div>
-  </div>)
+  </div>);
 }
