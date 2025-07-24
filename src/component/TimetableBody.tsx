@@ -1,4 +1,5 @@
-import type { Timetable } from "./TimetableModel";
+import formatTime from "../tools/formatTime";
+import type { Timetable } from "../model/timetableModel";
 
 interface TimetableBodyProps {
   tables: Array<Timetable>,
@@ -8,7 +9,10 @@ interface TimetableBodyProps {
 export default function TimetableBody(props: TimetableBodyProps) {
 
   return (<div id="timetable-body">
-    {props.tables.map((train, idx) => 
+    {props.tables
+      .filter((t)=> formatTime(props.currentTime) < t.departureTime)
+      .slice(0, 2)
+      .map((train, idx) => 
       <div key={idx} className="timetable-item">
         <div className="type" 
           style={{

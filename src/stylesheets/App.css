@@ -10,7 +10,7 @@
   margin-top: 10px;
 }
 
-#footer-info {
+#simulator-info {
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -19,12 +19,16 @@
   margin: 10px 20px;
 }
 
-#footer-info > #display-info {
+#simulator-info > #station-info {
   flex: 1;
   margin-right: 20px;
 }
 
-#footer-info > #display-info > p {
+#station-info:hover {
+  background-color: #888;
+}
+
+#simulator-info > #station-info > p {
   text-align: center;
   font-size: 4.5em;
   font-weight: 700;
@@ -34,14 +38,22 @@
   border-bottom: 4px solid white;
 }
 
-#footer-info > #current-time {
+#simulator-info > #current-time {
   width: max-content;
+  background-color: black;
+  padding: 10px 40px;
+}
+
+#simulator-info > #current-time > #time-label {
+  font-size: 2em;
+}
+
+#simulator-info > #current-time > #time {
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
   font-variation-settings: "wdth" 100;
-  font-size: 3em;
-  background-color: black;
-  padding: 20px;
+  font-size: 4em;
 }
+

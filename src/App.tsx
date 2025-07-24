@@ -3,12 +3,12 @@ import Infomation from './component/Info'
 import TimetableBody from './component/TimetableBody'
 import TimetableHeader from './component/TimetableHeader'
 import './stylesheets/App.css'
-import { sampleData, type Line, type TimetableStation } from './component/TimetableModel';
-
+import { sampleData, type Line, type TimetableStation } from './model/timetableModel';
+import InitData from './public/sampleShinjuku.json';
 
 function App() {
-  const [station, setStation] = React.useState<TimetableStation>(sampleData[0]);
-  const [line, setLine] = React.useState<Line>(sampleData[0].lines[0]);
+  const [station, setStation] = React.useState<TimetableStation>(InitData);
+  const [line, setLine] = React.useState<Line>(sampleData.lines[0]);
 
   const [curretTime, setCurrentTime] = React.useState(new Date());
   React.useEffect(() => {
@@ -24,7 +24,10 @@ function App() {
 
   return (
     <>
-      <Infomation station={station.station} currentTime={curretTime} />
+      <Infomation 
+        station={station.station}
+        currentTime={curretTime}
+        setStaion={setStation} />
       {
         line.directions.map((lineObj, idx) => 
           <div className='timetable' key={idx}>

@@ -1,0 +1,75 @@
+{
+    "station": "新宿",
+    "lines": [
+        {
+            "lineName": "JR山手線",
+            "lineColor": "#9acd32",
+            "corporateColor": "#228b22",
+            "directions": [
+                {
+                    "directionTitle": "外回り（上野・池袋方面）",
+                    "tables": [
+                        { "type": "各駅停車", "departureTime": "04:33", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "04:51", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "05:07", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "05:22", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "05:35", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "05:46", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "05:57", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "06:07", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "08:01", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "08:03", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "08:06", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "12:00", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "12:05", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "12:10", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "23:01", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "23:08", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "23:15", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "23:22", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "23:29", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "23:37", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "23:45", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "23:53", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "00:02", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "00:11", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "00:20", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "00:32", "destination": "上野・池袋方面" },
+                        { "type": "各駅停車", "departureTime": "00:44", "destination": "上野・池袋方面" }
+                    ]
+                },
+                {
+                    "directionTitle": "内回り（品川・渋谷方面）",
+                    "tables": [
+                        { "type": "各駅停車", "departureTime": "04:43", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "05:00", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "05:15", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "05:28", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "05:40", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "05:51", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "06:01", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "08:00", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "08:02", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "08:05", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "12:02", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "12:07", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "12:12", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "23:03", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "23:10", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "23:17", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "23:24", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "23:31", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "23:39", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "23:47", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "23:55", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "00:04", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "00:13", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "00:22", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "00:34", "destination": "品川・渋谷方面" },
+                        { "type": "各駅停車", "departureTime": "00:52", "destination": "品川・渋谷方面" }
+                    ]
+                }
+            ]
+        }
+    ]
+}

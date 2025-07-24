@@ -27,7 +27,7 @@ export interface Timetable {
 }
 
 
-export const sampleData: Array<TimetableStation> = [{
+export const sampleData: TimetableStation = {
   station: "新宿",
   lines: [
     {
@@ -71,4 +71,4 @@ export const sampleData: Array<TimetableStation> = [{
       ],
     }
   ]
-}];
+};
