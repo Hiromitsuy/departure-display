@@ -10,11 +10,11 @@ export default function TimetableBody(props: TimetableBodyProps) {
 
   return (<div id="timetable-body">
     {props.tables
-      .filter((t)=> formatTime(props.currentTime) < t.departureTime)
+      .filter((t)=> formatTime(props.currentTime) <= t.departureTime)
       .slice(0, 2)
       .map((train, idx) => 
       <div key={idx} className="timetable-item">
-        <div className="type" 
+        <div className={"type " + (train.type.length > 4 ? "multiline" : "")} 
           style={{
             backgroundColor: train.typeColor || "inherit",
             color: train.fontColor || "inherit",

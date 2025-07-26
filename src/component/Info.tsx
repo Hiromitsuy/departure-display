@@ -59,6 +59,7 @@ export default function Infomation(props: InfomationProps) {
     <div id="current-time">
       <span id="time-label">現在時刻 </span>
       <span id="time">{formatTime(props.currentTime)}</span>
+      <span id="time-sec">{("00" + props.currentTime.getSeconds()).slice(-2)}</span>
     </div>
   </div>);
 }

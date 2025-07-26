@@ -9,7 +9,7 @@ export interface HeaderProps {
 
 export default function TimetableHeader(props: HeaderProps) {
   return (<div id="timetable-header">
-    <div id="line-name">
+    <div id="line-name" className={props.lineName.includes('\n') ? "multiline" : ""}>
       <p>{props.lineName}</p>
     </div>
     <div id="line-color" style={{backgroundColor: props.lineColor || props.corporateColor}}></div>
