@@ -13,7 +13,11 @@ export default function TimetableBody(props: TimetableBodyProps) {
       .filter((t)=> formatTime(props.currentTime) <= t.departureTime)
       .slice(0, 2)
       .map((train, idx) => 
-      <div key={idx} className="timetable-item">
+      <div key={idx} 
+        className={ "timetable-item " + 
+          ((formatTime(props.currentTime) === train.departureTime && props.currentTime.getSeconds() > 30) ? "blinking" : "") 
+        }
+      >
         <div className={"type " + (train.type.length > 4 ? "multiline" : "")} 
           style={{
             backgroundColor: train.typeColor || "inherit",

@@ -50,6 +50,10 @@
     padding-top: 20px;
 }
 
+.timetable-item.blinking {
+    animation: blinking 1s ease-in-out infinite alternate;
+}
+
 .timetable-item > .type {
     flex: 2;
     display: flex;
@@ -76,4 +80,16 @@
 .timetable-item > .destination {
     flex: 4;
     text-align: center;
+}
+
+@keyframes blinking {
+   0% {
+    opacity: 1;
+   }
+   30% {
+    opacity: 1;
+   }
+   100% {
+    opacity: 0;
+   }
 }
