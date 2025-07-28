@@ -29,8 +29,6 @@ export default function Infomation(props: InfomationProps) {
 
     const reader = new  FileReader();
     reader.addEventListener('load', () => {
-      console.log(reader.result);
-
       if (typeof reader.result !== "string") {
         alert("ファイルの内容が正しくありません");
         return;

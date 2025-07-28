@@ -1,69 +1,193 @@
-# React + TypeScript + Vite
+# 電車発車時刻標シミュレーター (Train Departure Display Simulator)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+電車の発車時刻を、実際の駅に設置されているような電光掲示板風に表示する、フロントエンドのシミュレーションプロジェクトです。
 
-Currently, two official plugins are available:
+## 概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+このプロジェクトは、特定の駅の時刻表データをJSON形式で読み込み、ウェブブラウザ上でリアルな発車案内表示を再現します。**Vite + React + TypeScript** を使用して構築されており、路線ごとのテーマカラーや、列車の種別に応じた柔軟な色分けなど、視覚的に分かりやすく、カスタマイズ性の高い表示が可能です。ローカル環境での実行はもちろん、ビルドしてWebサーバーにデプロイすることもできます。
 
-## Expanding the ESLint configuration
+## プロジェクトの実行方法
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+本プロジェクトは **Vite + React + TypeScript** で構成されています。実行には Node.js と、パッケージ管理ツール（npm または yarn）が必要です。
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 開発環境での実行
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. **パッケージのインストール**
+   リポジトリをローカルにクローンした後、プロジェクトのルートディレクトリでターミナルを開き、下記のいずれかのコマンドを実行してください。これにより、プロジェクトの実行に必要なライブラリ（依存関係）がインストールされます。
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+   ```bash
+   # npm を使用する場合
+   npm install
+   
+   # yarn を使用する場合
+   yarn
+   ```
+
+2. **開発サーバーの起動**
+   インストール完了後、下記のいずれかのコマンドで開発用サーバーを起動します。
+
+   ```bash
+   # npm を使用する場合
+   npm run dev
+   
+   # yarn を使用する場合
+   yarn dev
+   ```
+
+   サーバーが起動すると、ターミナルに `http://localhost:xxxx` のようなローカルアドレスが表示されます。このアドレスにブラウザでアクセスすると、シミュレーターが表示されます。ファイルの内容を編集すると、自動的にブラウザがリロードされます。
+
+### ビルドと公開
+
+`build` コマンドを実行すると、`dist` ディレクトリに公開用に最適化（圧縮・軽量化）されたJavaScriptファイルとHTMLファイルが生成されます。
+この `dist` ディレクトリの中身全体を、GitHub Pages, Vercel, Netlify といった静的サイト向けのホスティングサービスにアップロードすることで、ウェブ上に公開できます。
+
+### 初期表示データの変更
+
+シミュレーター起動時に最初に表示される時刻表データを変更するには、以下のいずれかの方法で行います。
+
+* **方法1: サンプルファイルを直接編集する**
+  最も手軽な方法です。`src/sampleShinjuku.json` の内容を、表示したいデータ構造に合わせて直接書き換えます。
+
+* **方法2: 読み込むファイルを変更する**
+  別のデータファイルを使用したい場合、`App.tsx` の冒頭にある `import` 文を、任意のデータファイル（JSON）を指すようにパスを書き換えます。これにより、プロジェクトの初期表示データを柔軟に切り替えることができます。
+
+  ```tsx
+  // App.tsx
+  import InitData from './public/sampleShinjuku.json'; // ← このパスを表示したいJSONファイルのパスに書き換える
+  ```
+
+## 作成したデータセットの読み込み方法
+
+ローカルで作成した、あるいは手動で用意したデータセット（JSONファイル）を発車標シミュレーターに動的に読み込ませるには、以下の手順に従ってください。
+
+1. 発車標シミュレーターの画面をブラウザで開きます。
+
+2. 画面上部に表示されている駅名部分をクリックします。（マウスカーソルを合わせると、クリック可能なエリアの背景色が変わるため、そこで判断できます）
+
+3. OSのファイル選択ダイアログが表示されるので、読み込みたいデータセットのJSONファイルを選択します。ファイルは後述するデータ構造に準拠している必要があります。
+
+4. ファイルを選択すると、そのデータが即座に読み込まれ、発車標の表示が更新されます。
+
+## データセットの作成方法
+
+時刻表データは、プロジェクト内の `src/model/timetableModel.ts` で定義されたTypeScriptの型定義に従って、JSON形式で作成する必要があります。この構造に従わないデータは正しく表示されません。
+
+以下にデータの基本構造と、各プロパティについての詳細な説明を記載します。
+
+### データ構造の例
+
+```json
+{
+  "station": "新宿",
+  "lines": [
+    {
+      "lineName": "山手線",
+      "lineColor": "#80C342",
+      "corporateColor": "#008803",
+      "directions": [
+        {
+          "directionTitle": "上野・池袋方面 （外回り）",
+          "tables": [
+            {
+              "type": "各駅停車",
+              "departureTime": "13:40",
+              "destination": "上野・池袋 方面"
+            },
+            {
+              "type": "各駅停車",
+              "typeColor": "#2387c2",
+              "departureTime": "13:46",
+              "destination": "上野・池袋 方面"
+            }
+          ]
+        },
+        {
+          "directionTitle": "品川・渋谷方面 （内回り）",
+          "tables": [
+            {
+              "type": "各駅停車",
+              "departureTime": "13:43",
+              "destination": "品川・渋谷方面"
+            },
+            {
+              "type": "各駅停車",
+              "departureTime": "13:49",
+              "typeOutlineColor": "orange",
+              "fontColor": "orange",
+              "destination": "品川・渋谷方面"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### プロパティの詳細説明
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* `station` (string): **駅名**を文字列で指定します。（例: `"新宿"`）
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* `lines` (Array): その駅に乗り入れている**路線情報の配列**です。複数の路線がある場合は、この配列にオブジェクトを追加していきます。
+
+  * `lineName` (string): **路線名**を文字列で指定します。（例: `"山手線"`）
+
+  * `lineColor` (string): 路線の**テーマカラー**を16進数のカラーコードで指定します。主に路線の見出し部分の背景色として使用されます。
+
+  * `corporateColor` (string): 鉄道会社の**コーポレートカラー**を16進数のカラーコードで指定します。
+
+  * `directions` (Array): **方面情報の配列**です。同じ路線でも方面（上り・下りなど）によって表示を分けることができます。
+
+    * `directionTitle` (string): **方面の名称**を文字列で指定します。（例: `"上野・池袋方面 （外回り）"`）
+
+    * `tables` (Array): その方面に発車する**列車情報の配列**です。時刻の早い順に表示されます。
+
+      * `type` (string): **列車種別**を文字列で指定します。（例: `"各駅停車"`, `"快速"`, `"特急"`）
+
+      * `departureTime` (string): **発車時刻**を `"HH:mm"` 形式の文字列で指定します。
+
+      * `destination` (string): **行き先**を文字列で指定します。
+
+      * `typeColor` (string, optional): 種別表示の**背景色**をカラーコードで指定します。（任意項目。指定がない場合はデフォルト色）
+
+      * `typeOutlineColor` (string, optional): 種別表示の**枠線の色**をカラーコードで指定します。（任意項目）
+
+      * `fontColor` (string, optional): 種別表示の**文字色**をカラーコードで指定します。（任意項目）
+
+## 駅探の時刻表から表示用データセットの作成
+
+Webサイト「駅探」で公開されている時刻表ページをスクレイピングし、本シミュレーターで利用可能なデータセット（JSONファイル）を自動で作成する便利なツールが用意されています。
+
+`localtools/` ディレクトリ内で下記のコマンドを実行すると、スクリプトが実行され、`localtools/` 内に `timetable.json` が生成されます。
+
+```bash
+yarn dev
+```
+
+（参考）`package.json`内のスクリプト定義
+
+```json
+"scripts": {
+  "build": "tsc ./src/index.ts && mv ./src/*.js ./dist/",
+  "dev": "rm -rf ./dist && mkdir dist && yarn build && node ./dist/index.js"
+}
+```
+
+取得対象の駅や路線を変更する場合は、`localtools/src/getTimetable.ts` ファイル内の下記の設定値を直接編集してください。
+
+```typescript
+// 駅探の時刻表ページのURL。d1が方面1、d2が方面2に対応することが多い。
+const CSS_URL = "https://ekitan.com/timetable/pc/css/train/train.css";
+const HTML_URL = [
+  "https://ekitan.com/timetable/railway/line-station/131-2/d1", // 1方面
+  "https://ekitan.com/timetable/railway/line-station/131-2/d2", // 2方面
+]
+
+// 生成されるJSONファイルに設定する路線情報
+const LINE_COLOR = "#E31F26"
+const LINE_NAME = "埼京線"
+const CORP_COLOR = "#008803"
+
+export default async function main() {
+// ...
 ```
