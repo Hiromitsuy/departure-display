@@ -10,11 +10,30 @@ function App() {
   const [station, setStation] = React.useState<TimetableStation>(InitData);
   const [line, setLine] = React.useState<Line>(sampleData.lines[0]);
 
-  const [curretTime, setCurrentTime] = React.useState(new Date());
+  const [currentTime, setCurrentTime] = React.useState(new Date());
+  const moveMinutes = React.useRef(0);
+
+  React.useEffect(() => {
+    const handleKeyDownEvent = (ev: KeyboardEvent) => {
+      console.log("Keydown,", ev.code, moveMinutes);
+      switch(ev.code) {
+        case 'ArrowLeft':
+          moveMinutes.current = moveMinutes.current - 1;
+          break;
+        case 'ArrowRight':
+          moveMinutes.current = moveMinutes.current + 1;
+          break;
+      }
+    };
+    addEventListener('keydown', handleKeyDownEvent);
+  }, []);
+
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(new Date());
+      const current = new Date((new Date).getTime() + moveMinutes.current * 60 * 1000);
+      setCurrentTime(current);
     }, 1000);
+
     return () => { clearInterval(timer); };
   }, []);
 
@@ -26,8 +45,10 @@ function App() {
     <>
       <Infomation 
         station={station.station}
-        currentTime={curretTime}
-        setStaion={setStation} />
+        currentTime={currentTime}
+        setStaion={setStation}
+        setCurrentTime={setCurrentTime}
+      />
       {
         line.directions.map((lineObj, idx) => 
           <div className='timetable' key={idx}>
@@ -39,7 +60,7 @@ function App() {
             />
             <TimetableBody
               tables={lineObj.tables}
-              currentTime={curretTime}
+              currentTime={currentTime}
             />
           </div>
         )

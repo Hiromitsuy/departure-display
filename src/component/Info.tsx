@@ -7,6 +7,7 @@ export interface InfomationProps {
   station: string;
   setStaion: (newSta: TimetableStation) => void,
   currentTime: Date;
+  setCurrentTime: (date: Date) => void,
 }
 
 export default function Infomation(props: InfomationProps) {
