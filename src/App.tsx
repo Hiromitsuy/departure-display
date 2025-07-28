@@ -61,6 +61,7 @@ function App() {
             <TimetableBody
               tables={lineObj.tables}
               currentTime={currentTime}
+              isTerminalStation={line.directions.length < 2}
             />
           </div>
         )

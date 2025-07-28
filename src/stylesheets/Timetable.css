@@ -80,6 +80,8 @@
 .timetable-item > .destination {
     flex: 4;
     text-align: center;
+    text-wrap: nowrap;
+    overflow: hidden;
 }
 
 @keyframes blinking {

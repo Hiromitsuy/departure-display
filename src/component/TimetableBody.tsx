@@ -4,6 +4,7 @@ import type { Timetable } from "../model/timetableModel";
 interface TimetableBodyProps {
   tables: Array<Timetable>,
   currentTime: Date,
+  isTerminalStation: Boolean,
 }
 
 export default function TimetableBody(props: TimetableBodyProps) {
@@ -11,7 +12,7 @@ export default function TimetableBody(props: TimetableBodyProps) {
   return (<div id="timetable-body">
     {props.tables
       .filter((t)=> formatTime(props.currentTime) <= t.departureTime)
-      .slice(0, 2)
+      .slice(0, props.isTerminalStation ? 5 : 2)
       .map((train, idx) => 
       <div key={idx} 
         className={ "timetable-item " + 
