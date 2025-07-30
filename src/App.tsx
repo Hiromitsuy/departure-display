@@ -66,6 +66,9 @@ function App() {
           </div>
         )
       }
+      <div id='footer'>
+        <p>表示されている時刻情報はサンプルです。</p>
+      </div>
     </>
   )
 }
