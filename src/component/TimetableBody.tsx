@@ -1,35 +1,27 @@
-import formatTime from "../tools/formatTime";
 import type { Timetable } from "../model/timetableModel";
+import { sliceByN } from "../tools/sliceN";
 
-interface TimetableBodyProps {
-  tables: Array<Timetable>,
-  currentTime: Date,
-  isTerminalStation: Boolean,
+interface TimetableHourBodyProps {
+  timetableItems: Array<Timetable>
 }
 
-export default function TimetableBody(props: TimetableBodyProps) {
+export default function TimetableBody(props: TimetableHourBodyProps) {
+  const groupedByHour: Map<string, Array<Array<Timetable>>> = new Map();
 
-  return (<div id="timetable-body">
-    {props.tables
-      .filter((t)=> formatTime(props.currentTime) <= t.departureTime)
-      .slice(0, props.isTerminalStation ? 5 : 2)
-      .map((train, idx) => 
-      <div key={idx} 
-        className={ "timetable-item " + 
-          ((formatTime(props.currentTime) === train.departureTime && props.currentTime.getSeconds() > 30) ? "blinking" : "") 
-        }
-      >
-        <div className={"type " + (train.type.length > 4 ? "multiline" : "")} 
-          style={{
-            backgroundColor: train.typeColor || "inherit",
-            color: train.fontColor || "inherit",
-            outline: train.typeOutlineColor ? `solid 4px ${train.typeOutlineColor}` : "0px", 
-          }}>
-            {train.type}
-        </div>
-        <div className="time">{train.departureTime}</div>
-        <div className="destination">{train.destination}</div>
-      </div>
-    )}
-  </div>);
+  [...new Set(props.timetableItems.map((item) => item.departureTime.slice(0,2)))].slice(0,5).forEach((hour) => {
+    groupedByHour.set(hour, sliceByN(props.timetableItems.filter((item) => item.departureTime.slice(0, 2) === hour), 7))
+  });
+
+  return (<table className="timetable-body">
+    <tbody>
+      {
+        Array.from(groupedByHour.entries()).map(([hour, timesRow]) => 
+          timesRow.map((times, i) => <tr key={i}>
+            { i === 0 ? <th rowSpan={ timesRow.length } >{hour}</th> : <></>}
+            {times.map((it, i) => <td key={i} style={{fontSize: it.typeColor}}>{it.departureTime.slice(3)}</td>)}
+          </tr>)
+        )
+      }
+    </tbody>
+  </table>);
 }
