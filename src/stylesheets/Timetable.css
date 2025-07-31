@@ -1,6 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap'); */
 
-#timetable-header {
+#departure-header {
     display: flex;
     align-items:flex-end;
     height: 120px;
@@ -8,40 +8,40 @@
     font-size: 12px;
 }
 
-#timetable-header p {
+#departure-header p {
     margin: 0;
 }
 
-#timetable-header > #line-name {
+#departure-header > #line-name {
     flex: 1;
     text-align: end;
     font-size: 6em;
 }
 
-#timetable-header > #line-name.multiline {
+#departure-header > #line-name.multiline {
     font-size: 3.5em;
     white-space: pre-wrap;
 }
 
-#timetable-header > #line-color {
+#departure-header > #line-color {
     margin: 0px 30px;
     width: 60px;
     height: 100%;
 }
 
-#timetable-header > #line-direction {
+#departure-header > #line-direction {
     flex: 2;
     font-size: 5em;
 }
 
-#timetable-body {
+#departure-body {
     height: max-content;
     margin: 10px 0px;
     background-color: #000;
     padding-bottom: 20px;
 }
 
-.timetable-item {
+.departure-item {
     display: flex;
     height: 120px;
     flex-direction: row;
@@ -49,11 +49,11 @@
     padding-top: 20px;
 }
 
-.timetable-item.blinking {
+.departure-item.blinking {
     animation: blinking 1s ease-in-out infinite alternate;
 }
 
-.timetable-item > .type {
+.departure-item > .type {
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -62,12 +62,12 @@
     text-align: center;
     margin: 0 20px;
 }
-.timetable-item > .type.multiline {
+.departure-item > .type.multiline {
     font-size: 0.6em;
     line-height: 0.9em;
 }
 
-.timetable-item > .time {
+.departure-item > .time {
     flex: 1;
     text-align: center;
     font-family: "Open Sans", sans-serif;
@@ -76,7 +76,7 @@
     font-style: normal;
     font-variation-settings: "wdth" 100;
 }
-.timetable-item > .destination {
+.departure-item > .destination {
     flex: 4;
     text-align: center;
     text-wrap: nowrap;

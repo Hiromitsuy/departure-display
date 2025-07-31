@@ -7,8 +7,8 @@ export interface HeaderProps {
   directionTitle: string,
 }
 
-export default function TimetableHeader(props: HeaderProps) {
-  return (<div id="timetable-header">
+export default function DepartureHeader(props: HeaderProps) {
+  return (<div id="departure-header">
     <div id="line-name" className={props.lineName.includes('\n') ? "multiline" : ""}>
       <p>{props.lineName}</p>
     </div>

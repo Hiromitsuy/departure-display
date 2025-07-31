@@ -1,14 +1,14 @@
 import React from 'react';
 import Infomation from './component/Info'
-import TimetableBody from './component/TimetableBody'
-import TimetableHeader from './component/TimetableHeader'
 import './stylesheets/App.css'
 import { sampleData, type Line, type TimetableStation } from './model/timetableModel';
 import InitData from './public/sampleShinjuku.json';
+import Departure from './component/Departure';
 
 function App() {
   const [station, setStation] = React.useState<TimetableStation>(InitData);
   const [line, setLine] = React.useState<Line>(sampleData.lines[0]);
+  const [visibleTimetable, setVisibleTimetable] = React.useState(false);
 
   const [currentTime, setCurrentTime] = React.useState(new Date());
   const moveMinutes = React.useRef(0);
@@ -22,6 +22,12 @@ function App() {
           break;
         case 'ArrowRight':
           moveMinutes.current = moveMinutes.current + 1;
+          break;
+        case 'Enter':
+          setVisibleTimetable(true);
+          break;
+        case 'Backspace':
+          setVisibleTimetable(false);
           break;
       }
     };
@@ -49,22 +55,9 @@ function App() {
         setStaion={setStation}
         setCurrentTime={setCurrentTime}
       />
-      {
-        line.directions.map((lineObj, idx) => 
-          <div className='timetable' key={idx}>
-            <TimetableHeader 
-              lineName={line.lineName}
-              lineColor={line.lineColor}
-              corporateColor={line.corporateColor}
-              directionTitle={lineObj.directionTitle}
-            />
-            <TimetableBody
-              tables={lineObj.tables}
-              currentTime={currentTime}
-              isTerminalStation={line.directions.length < 2}
-            />
-          </div>
-        )
+      { visibleTimetable ? 
+          "" :
+          <Departure line={line} currentTime={currentTime} />
       }
       <div id='footer'>
         <p>表示されている時刻情報はサンプルです。</p>

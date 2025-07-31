@@ -7,15 +7,15 @@ interface TimetableBodyProps {
   isTerminalStation: Boolean,
 }
 
-export default function TimetableBody(props: TimetableBodyProps) {
+export default function DepartureBody(props: TimetableBodyProps) {
 
-  return (<div id="timetable-body">
+  return (<div id="departure-body">
     {props.tables
       .filter((t)=> formatTime(props.currentTime) <= t.departureTime)
       .slice(0, props.isTerminalStation ? 5 : 2)
       .map((train, idx) => 
       <div key={idx} 
-        className={ "timetable-item " + 
+        className={ "departure-item " + 
           ((formatTime(props.currentTime) === train.departureTime && props.currentTime.getSeconds() > 30) ? "blinking" : "") 
         }
       >
