@@ -1,4 +1,4 @@
-import "../stylesheets/Timetable.css";
+import "../stylesheets/DepartureSign.css";
 
 export interface HeaderProps {
   lineName: string,

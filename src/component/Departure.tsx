@@ -1,6 +1,7 @@
 import type { Line } from "../model/timetableModel";
 import DepartureBody from "./DepartureBody";
 import DepartureHeader from "./DepartureHeader";
+import "../stylesheets/DepartureSign.css";
 
 interface DepartureProps {
   line: Line,

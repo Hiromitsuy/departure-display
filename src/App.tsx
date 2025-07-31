@@ -4,6 +4,7 @@ import './stylesheets/App.css'
 import { sampleData, type Line, type TimetableStation } from './model/timetableModel';
 import InitData from './public/sampleShinjuku.json';
 import Departure from './component/Departure';
+import TimetableView from './component/Timetable';
 
 function App() {
   const [station, setStation] = React.useState<TimetableStation>(InitData);
@@ -56,7 +57,7 @@ function App() {
         setCurrentTime={setCurrentTime}
       />
       { visibleTimetable ? 
-          "" :
+          <TimetableView line={line} currentHour={currentTime.getHours()} /> :
           <Departure line={line} currentTime={currentTime} />
       }
       <div id='footer'>

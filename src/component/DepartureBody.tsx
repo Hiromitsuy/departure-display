@@ -1,5 +1,7 @@
 import formatTime from "../tools/formatTime";
 import type { Timetable } from "../model/timetableModel";
+import "../stylesheets/DepartureSign.css";
+
 
 interface TimetableBodyProps {
   tables: Array<Timetable>,
