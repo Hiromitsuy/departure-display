@@ -29,7 +29,6 @@ export default function TimetableView(props: TimetableProps) {
           </div>
         </div>))
     }
-
   </div>);
 }
 

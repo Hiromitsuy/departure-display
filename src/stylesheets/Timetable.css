@@ -32,6 +32,7 @@ div.timetable-header > .distination {
 
 div#timetable div.timetable-body {
     max-height: calc(100vh - 300px);
+    margin-bottom: 10px;
     overflow-y: scroll;
 }
 
