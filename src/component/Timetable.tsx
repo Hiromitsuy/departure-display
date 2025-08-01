@@ -23,11 +23,12 @@ export default function TimetableView(props: TimetableProps) {
             <div className="line-color" style={{backgroundColor: props.line.lineColor ? props.line.lineColor : props.line.corporateColor}}></div>
             <div className="distination">{direction.directionTitle}</div>
           </div>
-          <TimetableBody 
-            timetableItems={direction.tables.filter((item) => item.departureTime >= ((props.currentHour - 1) + ":00"))} />
+          <div className="timetable-body">
+            <TimetableBody 
+              timetableItems={direction.tables} />
+          </div>
         </div>))
     }
-
   </div>);
 }
 

@@ -67,11 +67,33 @@
   font-size: 2em;
 }
 
-
 #footer {
+  display: flex;
   margin: 0 20px;
 }
-#footer > p {
+
+#footer > #info {
+  flex: 1;
+}
+
+#footer > #info > span#info-icon {
+  margin: 0;
+  font-size: 1em;
+  width: max-content;
+  padding: 4px 10px;
+  margin-right: 20px;
+  border: solid 1px white;
+  border-radius: 20px;
+}
+
+#footer > #info > span#tooltip {
+  margin: 0;
+  font-size: 1em;
+  width: max-content;
+}
+
+#footer > #notice > p {
+  flex: 1;
   text-align: right;
   margin: 0;
 }

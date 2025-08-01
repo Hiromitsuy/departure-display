@@ -30,6 +30,12 @@ div.timetable-header > .distination {
     font-size: 2em;
 }
 
+div#timetable div.timetable-body {
+    max-height: calc(100vh - 300px);
+    margin-bottom: 10px;
+    overflow-y: scroll;
+}
+
 table.timetable-body {
     display: table;
     border: 1px solid #ccc;
